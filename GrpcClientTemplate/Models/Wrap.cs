@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -29,12 +30,12 @@ namespace GrpcClientTemplate.Models
         /// </summary>
         /// <param name="stubBoolean">This is a stub. It is using here only for prevent crossing between 'string' and 'T'. There are no actions under here.</param>
         /// <param name="issueExplanation">Explanation for issue.</param>
-        public Wrap(bool stubBoolean = true, string issueExplanation = "No explanation")
+        public Wrap(bool stubBoolean = true, string issueExplanation = "No explanation", [CallerMemberName] string callerName = "")
         {
             this._isValid = false;
             _ = stubBoolean;
 
-            this._issueExplanation = string.Concat(typeof(T), "\t", issueExplanation);
+            this._issueExplanation = string.Concat(callerName, ":\t", issueExplanation);
         }
 
         /// <summary>
